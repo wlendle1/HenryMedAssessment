@@ -8,7 +8,7 @@ test.describe('Landing Page', () => {
     });
 
     test('Booking an Appointment', async ({ page }) => {
-        const {birthDay, firstName, lastName, emailAddress, address, city} = createPatient();
+        const { birthDay, firstName, lastName, emailAddress, address, city } = createPatient();
         await expect(page.getByText('Schedule your Appointment!')).toBeVisible();
         await page.getByTestId('california').click();
 
@@ -23,9 +23,9 @@ test.describe('Landing Page', () => {
         await page.getByTestId('verifyEmail').fill(emailAddress);
         await page.getByPlaceholder('mm/dd/yyyy').fill(birthDay);
         await page.getByPlaceholder('(201) 555-5555').fill('(201) 555-5555');
-        const sexDropDown= page.getByTestId('sex');
+        const sexDropDown = page.getByTestId('sex');
         await sexDropDown.selectOption('Male');
-        const pronounDropDown= page.getByTestId('preferredPronouns');
+        const pronounDropDown = page.getByTestId('preferredPronouns');
         await pronounDropDown.selectOption('she/her');
         await page.getByTestId('tosConsent').click();
         await page.getByTestId('marketingConsent').click();
@@ -38,12 +38,11 @@ test.describe('Landing Page', () => {
 
     });
     test('Booking an Appointment For Underage Patient', async ({ page }) => {
-        const {childBirthDay, firstName, lastName, emailAddress, address, city} = createPatient();
+        const { childBirthDay, firstName, lastName, emailAddress, address, city } = createPatient();
         await expect(page.getByText('Schedule your Appointment!')).toBeVisible();
         await page.getByTestId('colorado').click();
 
         await page.locator('div:nth-child(1) > div:nth-child(2) > button:nth-child(2)').click();
-        //this makes sure im always grabbing the first available appt slot5
         await page.getByTestId('appointmentOverviewContinue').click();
 
         await page.getByPlaceholder('Jane').nth(0).fill(firstName);
@@ -53,9 +52,9 @@ test.describe('Landing Page', () => {
         await page.getByTestId('verifyEmail').fill(emailAddress);
         await page.getByPlaceholder('mm/dd/yyyy').fill(childBirthDay);
         await page.getByPlaceholder('(201) 555-5555').fill('(201) 555-5555');
-        const sexDropDown= page.getByTestId('sex');
+        const sexDropDown = page.getByTestId('sex');
         await sexDropDown.selectOption('Male');
-        const pronounDropDown= page.getByTestId('preferredPronouns');
+        const pronounDropDown = page.getByTestId('preferredPronouns');
         await pronounDropDown.selectOption('she/her');
         await page.getByTestId('tosConsent').click();
         await page.getByTestId('marketingConsent').click();
@@ -63,6 +62,7 @@ test.describe('Landing Page', () => {
 
 
     });
+
     test('Fail Case for Booking in Unavailable Location', async ({ page }) => {
         await expect(page.getByText('Schedule your Appointment!')).toBeVisible();
         await page.getByTestId('otherstate').click();

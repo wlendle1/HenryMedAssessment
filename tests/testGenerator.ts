@@ -14,8 +14,8 @@ interface PatientInterface {
 }
 
 export function createPatient(): PatientInterface {
-    const birthDate = moment.utc(chance.birthday({type: 'adult'})).format("MM/DD/YYYY")
-    const childBirthDate = moment.utc(chance.birthday({type: 'child'})).format("MM/DD/YYYY")
+    const birthDate = moment.utc(chance.birthday({ type: 'adult' })).format("MM/DD/YYYY")
+    const childBirthDate = moment.utc(chance.birthday({ type: 'child' })).format("MM/DD/YYYY")
     const emailDomain = "@yopmail.com"
     const firstName = chance.first()
     const lastName = chance.last()
